@@ -1,0 +1,9 @@
+.menu-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .active {
+    color: white;
+    background-color: blue;
+  }

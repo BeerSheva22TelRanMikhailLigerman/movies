@@ -33,11 +33,11 @@ export default class ApplicationBar {
                  this.#buttons[this.#activeIndex].classList.remove(ACTIVE);
                  this.#sectionElements[this.#activeIndex].hidden = true;
             }
-             this.#buttons[index].classList.add(ACTIVE);
+             
              await this.#callbackFn(index);
-            this.#sectionElements[index].hidden = false;
-           
-            this.#activeIndex = index;
+             this.#sectionElements[index].hidden = false;
+             this.#buttons[index].classList.add(ACTIVE);
+             this.#activeIndex = index;
             
 
         }
