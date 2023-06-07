@@ -1,5 +1,7 @@
 //imports
 import ApplicationBar from "./ui/ApplicationBar.js";
+import MovieDBService from './service/MovieDBService.js';
+import theMoviedb from './config/service-config.json' assert {type: 'json'};
 
 //consts
 const sections = [
@@ -9,6 +11,8 @@ const sections = [
 
 //objects
 const menu = new ApplicationBar("buttons-place", sections, menuHandler);
+const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey);
+movieDBService.getList("popular");
 
 //functions
 async function menuHandler(index) {
