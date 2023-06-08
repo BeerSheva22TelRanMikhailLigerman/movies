@@ -1,3 +1,8 @@
+:root {
+  --thumbnails-img-width: 20vw;
+  --thumbnails-img-height: calc(var(--thumbnails-img-width) * 0.79);
+  --thumbnails-title-height: calc(var(--thumbnails-img-height) * 0.3)
+}
 .menu-section {
     display: flex;
     flex-direction: row;
@@ -7,3 +12,34 @@
     color: white;
     background-color: blue;
   }
+  .thumbnails-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 60vh;
+    overflow-y: auto;
+    justify-content: space-around;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top:6vh;
+}
+.thumbnails-item {
+  border: solid 1px blue;
+  border-radius: 25%;
+  max-width: var(--thumbnails-img-width);
+  min-width: var(--thumbnails-img-width);
+  min-height: calc(var(--thumbnails-img-height) + var(--thumbnails-title-height));
+  margin-top: 3vh;
+  overflow: hidden;
+}
+.thumnails-image {
+  width: var(--thumbnails-img-width);
+  height: var(--thumbnails-img-height);
+  display: block;
+}
+.thumbnails-title {
+  display: block;
+  text-align: center;
+  background-color: burlywood;
+  height: var(--thumbnails-title-height)
+}
