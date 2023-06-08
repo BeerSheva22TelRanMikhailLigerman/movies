@@ -8,11 +8,14 @@ export default class MovieDBService {
         this.#apiKey = apiKey;
         this.#uRLPrefix = uRLPrefix;
     }
-    #getUrl(listType) {
+    #getListUrl(listType) {
         return `${this.#baseUrl}${listType}?language=en-US&page=1&api_key=${this.#apiKey}`
     }
+    #getDetailUrl(id) {
+        return `${this.#baseUrl}${id}?language=en-US&api_key=${this.#apiKey}`
+    }
     async getList(listType) {
-        const url = this.#getUrl(listType);
+        const url = this.#getListUrl(listType);
         const response = await fetch(url);
         const data = await response.json();
         const res = data.results.map(item => {
@@ -23,12 +26,14 @@ export default class MovieDBService {
                 "vote_average": item.vote_average,
                 "genre_ids": item.genre_ids
             };
-        });        
-        //console.log(res);
+        });           
         return res
         
     }
     async getDetailData(id) {
-        //TODO
+        const url = this.#getDetailUrl(id);
+        const response = await fetch(url);
+        const data = await response.json();            
+        return data
     }
 }

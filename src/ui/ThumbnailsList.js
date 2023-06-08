@@ -6,8 +6,7 @@ export default class ThumbnailsList {
     #callbackFn
     constructor(parentId, thumbnailsData, callbackFn) {
         this.#callbackFn = callbackFn;
-        this.#fillThumbnails(parentId, thumbnailsData);
-        console.log(thumbnailsData)
+        this.#fillThumbnails(parentId, thumbnailsData);       
         this.#sectionElement = document.getElementById("details-section");
         //this.#setSectionElements(thumbnailsData.map(s => s.id));
         this.#addListeners();
@@ -24,7 +23,7 @@ export default class ThumbnailsList {
                 </a>
             </li>
         `);
-        this.#thumbnails = parentElement.childNodes;
+        this.#thumbnails = parentElement.childNodes;        
     }
     // #setSectionElements(sectionIds) {
     //     this.#sectionElements = sectionIds.map(id => document.getElementById(id));
