@@ -4,20 +4,23 @@ export default class DetailsSection {
     #sectionElement
     #activeIndex
     #parentElement
+    #uRLPrefix
    
-    constructor(parentId) {       
-        this.#parentElement = document.getElementById(parentId);
-       
+    constructor(parentId, uRLPrefix) {       
+        this.#parentElement = document.getElementById(parentId);  
+        this.#uRLPrefix = uRLPrefix;     
     }
 
     fillDetails (movieData){
         const detailHTML = `
-        <img src="images/dog1.png" class="details-image">
-        <span class="details-title">start text</span>
-        <button onclick="hideDetails()" class="hide-button">X</button>
+        <img src="${this.#uRLPrefix + movieData.poster_path}" class="details-image">
+        <span class="details-title">${movieData.overview}</span>
+        <button class="hide-button">X</button>
         `;
-       // this.#parentElement.innerHTML = detailHTML;
+        this.#parentElement.innerHTML = detailHTML;
+        console.log(movieData)
     }
+    
     
     #addListeners() {
         this.#thumbnails.forEach((b, index) => b.addEventListener('click', this.#handler.bind(this, index)))

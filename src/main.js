@@ -25,7 +25,7 @@ const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey,
 const popListThumbnailsData = await movieDBService.getList(popList);
 const popListSection = new ThumbnailsList("thumbnails-place", popListThumbnailsData, thumbnailHandler);
 
-const detailSection = new DetailsSection(detailSectionElement);
+const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPrefix);
 
 
 
@@ -46,7 +46,7 @@ async function menuHandler(index) {
         }
     }
 }
-function thumbnailHandler(index){
-    const detailsData = movieDBService.getDetailData(popListThumbnailsData[Math.ceil(index/2) - 1].id);  
+async function thumbnailHandler(index){
+    const detailsData = await movieDBService.getDetailData(popListThumbnailsData[Math.ceil(index/2) - 1].id);  
     detailSection.fillDetails(detailsData)    
 }
