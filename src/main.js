@@ -18,10 +18,10 @@ const sections = [
 //objects
 const menuSection = new ApplicationBar("buttons-place", sections, menuHandler);
 
-const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey);
+const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey, theMoviedb.uRLPrefix);
 
-const popListData = movieDBService.getList(popList);
-const popListSection = new ThumbnailsList("pop-list-place", popListData, thumbnailHandler)
+const popListThumbnailsData = await movieDBService.getList(popList);
+const popListSection = new ThumbnailsList("thumbnails-place", popListThumbnailsData, thumbnailHandler)
 
 
 

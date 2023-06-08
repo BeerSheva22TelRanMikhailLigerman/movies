@@ -1,24 +1,28 @@
-
+const ACTIVE = 'active'
 export default class ThumbnailsList {
     #buttons
     #sectionElements
     #activeIndex
     #callbackFn
-    constructor(parentId, data, callbackFn) {        
-        this.#callbackFn = callbackFn;        
+    constructor(parentId, thumbnailsData, callbackFn) {        
+        this.#callbackFn = callbackFn;
+        this.#fillThumbnails(parentId, thumbnailsData.map(s => s.title));
+        console.log(thumbnailsData)
+        this.#setSectionElements(thumbnailsData.map(s => s.id));
         this.#addListeners();
+
+
     }
-    #fillButtons(parentId, titles) {
+    #fillThumbnails(parentId, titles) {
         const parentElement = document.getElementById(parentId);
-        parentElement.innerHTML = titles.map(t => `<button class="menu-button">${t}</button>`).join('');
+        parentElement.innerHTML = titles.map(t => `<div class="menu-button">${t}</div>`).join('');
         this.#buttons = parentElement.childNodes;
     }
     #setSectionElements(sectionIds) {
         this.#sectionElements = sectionIds.map(id => document.getElementById(id));
     }
     #addListeners() {
-        this.#buttons.forEach((b, index) => b.addEventListener('click',
-       this.#handler.bind(this, index)))
+        this.#buttons.forEach((b, index) => b.addEventListener('click', this.#handler.bind(this, index)))
     }
     async #handler(index) {
         if (this.#activeIndex == undefined || index != this.#activeIndex) {
