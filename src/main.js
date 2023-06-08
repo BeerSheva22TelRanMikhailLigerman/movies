@@ -1,18 +1,31 @@
 //imports
 import ApplicationBar from "./ui/ApplicationBar.js";
+import ThumbnailsList from "./ui/ThumbnailsList.js";
 import MovieDBService from './service/MovieDBService.js';
 import theMoviedb from './config/service-config.json' assert {type: 'json'};
 
+
 //consts
+const popList = "popular";
+const upcomingList = "upcoming";
+const nowPlayingList = "now_playing";
 const sections = [
     { title: "Home", id: "pop-list-place" },
     { title: "Search", id: "search-form-place" }
 ]; 
 
+
 //objects
-const menu = new ApplicationBar("buttons-place", sections, menuHandler);
+const menuSection = new ApplicationBar("buttons-place", sections, menuHandler);
+
 const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey);
-movieDBService.getList("popular");
+
+const popListData = movieDBService.getList(popList);
+const popListSection = new ThumbnailsList("pop-list-place", popListData, thumbnailHandler)
+
+
+
+
 
 //functions
 async function menuHandler(index) {
@@ -29,4 +42,8 @@ async function menuHandler(index) {
             // break;
         }
     }
+}
+function thumbnailHandler(index){
+    //TODO:
+    // open pop-up window or section "details"
 }

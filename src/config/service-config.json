@@ -1,4 +1,5 @@
 {
     "apiKey": "2c46288716a18fb7aadcc2a801f3fc6b",
-    "baseUrl": "https://api.themoviedb.org/3/movie/"
+    "baseUrl": "https://api.themoviedb.org/3/movie/",
+    "uRLPrefix": "https://image.tmdb.org/t/p/w500"
 }
