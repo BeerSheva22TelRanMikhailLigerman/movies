@@ -46,4 +46,5 @@ async function menuHandler(index) {
 function thumbnailHandler(index){
     //TODO:
     // open pop-up window or section "details"
+    console.log(`${index} pressed`)
 }
