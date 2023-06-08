@@ -1,6 +1,6 @@
 const ACTIVE = 'active'
 export default class ApplicationBar {
-    #buttons
+    #buttons //array of links to button elements
     #sectionElements
     #activeIndex
     #callbackFn
@@ -8,9 +8,10 @@ export default class ApplicationBar {
         //sections - array of objects 
         //each object {title: string, id: string}
         this.#callbackFn = callbackFn;
-        this.#fillButtons(parentId, sections.map(s => s.title));
-        this.#setSectionElements(sections.map(s => s.id));
-        this.#addListeners();
+        this.#fillButtons(parentId, sections.map(s => s.title)); //draws button elements with text (via title)
+        this.#setSectionElements(sections.map(s => s.id));      // makes array of links to elements (via id)
+        this.#addListeners(); //add listener to each button. Set function #handler binded with "this" + button index
+        this.#activeIndex = 0
 
 
     }
@@ -23,8 +24,7 @@ export default class ApplicationBar {
         this.#sectionElements = sectionIds.map(id => document.getElementById(id));
     }
     #addListeners() {
-        this.#buttons.forEach((b, index) => b.addEventListener('click',
-       this.#handler.bind(this, index)))
+        this.#buttons.forEach((b, index) => b.addEventListener('click', this.#handler.bind(this, index)))
     }
     async #handler(index) {
         if (this.#activeIndex == undefined || index != this.#activeIndex) {

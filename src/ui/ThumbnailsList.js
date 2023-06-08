@@ -1,14 +1,15 @@
 const ACTIVE = 'active'
 export default class ThumbnailsList {
-    #thumbnail
-    #sectionElements
+    #thumbnails
+    #sectionElement
     #activeIndex
     #callbackFn
     constructor(parentId, thumbnailsData, callbackFn) {
         this.#callbackFn = callbackFn;
         this.#fillThumbnails(parentId, thumbnailsData);
         console.log(thumbnailsData)
-        this.#setSectionElements(thumbnailsData.map(s => s.id));
+        this.#sectionElement = document.getElementById("details-section");
+        //this.#setSectionElements(thumbnailsData.map(s => s.id));
         this.#addListeners();
 
 
@@ -23,25 +24,25 @@ export default class ThumbnailsList {
                 </a>
             </li>
         `);
-        this.#thumbnail = parentElement.childNodes;
+        this.#thumbnails = parentElement.childNodes;
     }
-    #setSectionElements(sectionIds) {
-        this.#sectionElements = sectionIds.map(id => document.getElementById(id));
-    }
+    // #setSectionElements(sectionIds) {
+    //     this.#sectionElements = sectionIds.map(id => document.getElementById(id));
+    // }
     #addListeners() {
-        this.#thumbnail.forEach((b, index) => b.addEventListener('click', this.#handler.bind(this, index)))
+        this.#thumbnails.forEach((b, index) => b.addEventListener('click', this.#handler.bind(this, index)))
     }
     async #handler(index) {
         if (this.#activeIndex == undefined || index != this.#activeIndex) {
 
             if (this.#activeIndex != undefined) {
-                this.#thumbnail[this.#activeIndex].classList.remove(ACTIVE);
-                this.#sectionElements[this.#activeIndex].hidden = true;
+                this.#thumbnails[this.#activeIndex].classList.remove(ACTIVE);
+                this.#sectionElement.hidden = true;
             }
 
             await this.#callbackFn(index);
-            this.#sectionElements[index].hidden = false;
-            this.#thumbnail[index].classList.add(ACTIVE);
+            this.#sectionElement.hidden = false;
+            this.#thumbnails[index].classList.add(ACTIVE);
             this.#activeIndex = index;
 
 

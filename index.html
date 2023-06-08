@@ -13,13 +13,20 @@
     <section id="menu-place" class="menu-section">
         <div class="menu-divs">
             <div id="buttons-place"></div>
-            <div id="sign-in-place" ></div>
+            <div id="sign-in-place" > sign-in-place</div>
         </div> 
-        <div id="sign-in-place">sign-in-place
-        </div>
+        
     </section>
     <main>
-        <section id="pop-list-place"> pop-list-place
+        <section id="details-section" hidden> details-section
+            <div class="details-container">
+                <img src="images/dog1.png" class="details-image">
+                <span class="details-title">start text</span>
+                <button onclick="hideDetails()" class="hide-button">X</button>
+            </div>
+        </section>
+
+        <section id="pop-list-place"> 
             <ul id="thumbnails-place"  class="thumbnails-list">                
             </ul>
         </section>
@@ -34,15 +41,7 @@
         </section>
     
         <section id="search-result-place" hidden> search-result-place
-        </section>
-
-        <section class="details-section" hidden> details-section
-            <div class="details-container">
-                <img src="images/dog1.png" class="details-image">
-                <span class="details-title">start text</span>
-                <button onclick="hideDetails()" class="hide-button">X</button>
-            </div>
-        </section>
+        </section>        
     </main>
     <script src="src/main.js" type="module"></script>
 </body>
