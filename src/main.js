@@ -35,7 +35,7 @@ const popListSection = new ThumbnailsList("thumbnails-place", popListThumbnailsD
 const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPrefix, hideDetails);
 
 const serchSection = new SearchSection("search-form-place", searchSectionButtons, searhHandler);
-
+serchSection.fillSearchFields();
 
 
 
@@ -53,7 +53,7 @@ async function menuHandler(index) {
     }
 }
 async function thumbnailHandler(index) {
-    const detailsData = await movieDBService.getDetailData(this.thumbnailsData[Math.ceil(index / 2) - 1].id);
+    const detailsData = await movieDBService.getDetailData(this.thumbnailsData[Math.ceil(index / 2) - 1].id); //FIX with Array.from(obj) in UI
     detailSection.fillDetails(detailsData)
 }
 function hideDetails() {
