@@ -11,6 +11,7 @@ const detailSectionElement = "details-container";
 const popList = "popular";
 const upcomingList = "upcoming";
 const nowPlayingList = "now_playing";
+const HIDDEN = "hidden";
 const sections = [
     { title: "Home", id: "pop-list-place" },
     { title: "Search", id: "search-form-place" }
@@ -25,7 +26,7 @@ const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey,
 const popListThumbnailsData = await movieDBService.getList(popList);
 const popListSection = new ThumbnailsList("thumbnails-place", popListThumbnailsData, thumbnailHandler);
 
-const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPrefix);
+const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPrefix, hideDetails);
 
 
 
@@ -49,4 +50,8 @@ async function menuHandler(index) {
 async function thumbnailHandler(index){
     const detailsData = await movieDBService.getDetailData(popListThumbnailsData[Math.ceil(index/2) - 1].id);  
     detailSection.fillDetails(detailsData)    
+}
+function hideDetails() {   
+    const detSection = document.querySelector(".details-section");
+    detSection.hidden = true;    
 }
