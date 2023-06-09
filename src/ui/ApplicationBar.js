@@ -27,8 +27,7 @@ export default class ApplicationBar {
         this.#buttons.forEach((b, index) => b.addEventListener('click', this.#handler.bind(this, index)))
     }
     async #handler(index) {
-        if (this.#activeIndex == undefined || index != this.#activeIndex) {
-            
+        if (this.#activeIndex == undefined || index != this.#activeIndex) {            
             if(this.#activeIndex != undefined) {
                  this.#buttons[this.#activeIndex].classList.remove(ACTIVE);
                  this.#sectionElements[this.#activeIndex].hidden = true;

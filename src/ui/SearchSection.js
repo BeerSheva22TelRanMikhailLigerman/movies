@@ -11,7 +11,7 @@ export default class SearchSection {
         this.#fillButtons(parentId, sections.map(s => s.title)); //draws button elements with text (via title)
         this.#setSectionElements(sections.map(s => s.id));      // makes array of links to elements (via id)
         this.#addListeners(); //add listener to each button. Set function #handler binded with "this" + button index
-        this.#activeIndex = 0
+       
 
 
     }

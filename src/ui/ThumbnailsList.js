@@ -4,18 +4,20 @@ export default class ThumbnailsList {
     #sectionElement
     #activeIndex
     #callbackFn
+    thumbnailsData
     constructor(parentId, thumbnailsData, callbackFn) {
+        this.thumbnailsData = thumbnailsData;
         this.#callbackFn = callbackFn;
-        this.#fillThumbnails(parentId, thumbnailsData);       
+        this.#fillThumbnails(parentId);       
         this.#sectionElement = document.getElementById("details-section");
         //this.#setSectionElements(thumbnailsData.map(s => s.id));
         this.#addListeners();
 
 
     }
-    #fillThumbnails(parentId, thumbnailData) {
+    #fillThumbnails(parentId,) {
         const parentElement = document.getElementById(parentId);
-        parentElement.innerHTML = thumbnailData.map(t => `
+        parentElement.innerHTML = this.thumbnailsData.map(t => `
             <li class="thumbnails-item">
                 <a href="#" class="thumnails-ancor">
                 <img src="${t.backdrop_path}" class="thumnails-image">
