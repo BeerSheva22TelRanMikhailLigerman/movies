@@ -33,17 +33,14 @@ const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPre
 
 //functions
 async function menuHandler(index) {
-    //updateForm.hideForm();
+    //TODO (nothing);
     switch (index) {
         case 0: {
-            // const employees = await action(companyService.getAllEmployees
-            //     .bind(companyService));
-            // employeeTable.fillData(employees);
+            //TODO (nothing)
             break;
         }
         case 1: {
-            // await statisticsProcessing();
-            // break;
+            console.log("search button was pressed")
         }
     }
 }
