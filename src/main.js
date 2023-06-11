@@ -35,7 +35,7 @@ const popListSection = new ThumbnailsList("thumbnails-place", popListThumbnailsD
 const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPrefix, hideDetails);
 
 const searchSection = new SearchSection("search-buttons-place", searchSectionButtons, searhHandler);
-const searchConfigData = getSearchConfigData();
+const searchConfigData = await getSearchConfigData();
 searchSection.fillSearchFields("fields-place", searchConfigData);
 
 

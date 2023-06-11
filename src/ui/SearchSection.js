@@ -27,8 +27,7 @@ export default class SearchSection {
         let parentElement = document.getElementById(parentId);
         const buttonsHTML = titles.map(t => `<button class="menu-button">${t}</button>`).join('');
         parentElement.innerHTML = buttonsHTML;
-        this.#buttons = parentElement.childNodes;
-        console.log(this.#buttons)
+        this.#buttons = parentElement.childNodes;        
     }
     
     #setSectionElements(sectionIds) {
@@ -58,32 +57,33 @@ export default class SearchSection {
         return this.#activeIndex;
     }
     fillSearchFields(parentId, configData) {
-        this.#parentId = parentId;
-        const { genreList } = configData; //temp
+        this.#parentId = parentId; 
         const parentElement = document.getElementById(parentId);
         parentElement.innerHTML = `
             <div class="input-item">
             <input id="${this.#getId('title')}" name="title" placeholder="enter movie title" required>
+
             <select id="${this.#getId('genre')}" name="genre" required>               
             <option value hidden selected disabled>--Select genre--</option>
             </select>    
 
     </div>
         `;
-        // this.#setElements();
-        // this.#setOptions(configData);
-        console.log(genreList)    //temp
+         this.#setElements();
+         this.#setOptions(configData);
+       
     }
     #setElements() {
         this.#titleElement = document.getElementById(this.#getId('title'));
         this.#genreElement = document.getElementById(this.#getId('genre'));
+       
     }
     #setOptions(configData) {
         const { genreList } = configData;
+        console.log(genreList[0].name);
         this.#genreElement.innerHTML +=
             genreList.map(item => `<option value=${item.name}uselected>${item.name}</option>`).join('');
-        // this.#salaryElement.min = minSalary * 1000;
-        // this.#salaryElement.max = maxSalary * 1000;
+        
 
     }
 
