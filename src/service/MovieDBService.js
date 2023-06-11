@@ -14,6 +14,10 @@ export default class MovieDBService {
     #getDetailUrl(id) {
         return `${this.#baseUrl}${id}?language=en-US&api_key=${this.#apiKey}`
     }
+    #getSearchUrl(searchData){
+        //TODO
+        return "Url"
+    }
     async getList(listType) {
         const url = this.#getListUrl(listType);
         const response = await fetch(url);
@@ -41,5 +45,12 @@ export default class MovieDBService {
         const response = await fetch(url);
         const data = await response.json();        
         return data.genres;       
+    }
+    async getSearchResults(searchData){
+        const url = this.#getSearchUrl;
+        // const response = await fetch(url);
+        // const data = await response.json(); 
+        // return data;
+        console.log(searchData)
     }
 }

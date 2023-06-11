@@ -66,22 +66,25 @@ async function searhHandler(index) {
     //TODO (nothing);
     switch (index) {
         case 0: {
-            //TODO by Now playing button click
+            //"Now playing" button click
             const nowPlayingData = await movieDBService.getList(nowPlayingList);           
             const nowPlayingSection = new ThumbnailsList("now-playing-place", nowPlayingData, thumbnailHandler);
             
             break;
         }
         case 1: {
-            //TODO by Upcoming button click
+            //"Upcoming" button click
             const upcomingData = await movieDBService.getList(upcomingList);            
             const upcomingSection = new ThumbnailsList("upcoming-place", upcomingData, thumbnailHandler);
             
             break
         }
         case 2: {
-            //TODO by Find  button click
-            console.log("Find button was pressed");
+            //TODO by "Find" button click
+            const searchData = searchSection.getSearchData();
+            const searchResultData = await movieDBService.getSearchResults(searchData);
+            //const searchResultSection = new ThumbnailsList("search-result-place", searchResultData, thumbnailHandler);
+            console.log('Find button work finished')
         }
     }    
 }
