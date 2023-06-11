@@ -67,14 +67,14 @@ async function searhHandler(index) {
     switch (index) {
         case 0: {
             //TODO by Now playing button click
-            const nowPlayingData = await movieDBService.getList(nowPlayingList);
+            const nowPlayingData = await movieDBService.getList(nowPlayingList);           
             const nowPlayingSection = new ThumbnailsList("now-playing-place", nowPlayingData, thumbnailHandler);
             
             break;
         }
         case 1: {
             //TODO by Upcoming button click
-            const upcomingData = await movieDBService.getList(nowPlayingList);
+            const upcomingData = await movieDBService.getList(upcomingList);            
             const upcomingSection = new ThumbnailsList("upcoming-place", upcomingData, thumbnailHandler);
             
             break
