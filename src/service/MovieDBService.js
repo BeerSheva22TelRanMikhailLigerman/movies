@@ -36,4 +36,10 @@ export default class MovieDBService {
         const data = await response.json();            
         return data
     }
+    async getGenreList() {
+        const url = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${this.#apiKey}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data)
+    }
 }

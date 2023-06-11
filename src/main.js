@@ -27,15 +27,17 @@ const searchSectionButtons = [
 //objects
 const movieDBService = new MovieDBService(theMoviedb.baseUrl, theMoviedb.apiKey, theMoviedb.uRLPrefix);
 
-const menuSection = new ApplicationBar("buttons-place", homeSectionsButtons, menuHandler);
+const menuSection = new ApplicationBar("main-buttons-place", homeSectionsButtons, menuHandler);
 
 const popListThumbnailsData = await movieDBService.getList(popList);
 const popListSection = new ThumbnailsList("thumbnails-place", popListThumbnailsData, thumbnailHandler);
 
 const detailSection = new DetailsSection(detailSectionElement, theMoviedb.uRLPrefix, hideDetails);
 
-const serchSection = new SearchSection("search-form-place", searchSectionButtons, searhHandler);
-serchSection.fillSearchFields();
+const searchSection = new SearchSection("search-buttons-place", searchSectionButtons, searhHandler);
+const searchConfigData = getSearchConfigData();
+searchSection.fillSearchFields("fields-place", searchConfigData);
+
 
 
 
@@ -67,18 +69,26 @@ async function searhHandler(index) {
             //TODO by Now playing button click
             const nowPlayingData = await movieDBService.getList(nowPlayingList);
             const nowPlayingSection = new ThumbnailsList("now-playing-place", nowPlayingData, thumbnailHandler);
+            
             break;
         }
         case 1: {
             //TODO by Upcoming button click
             const upcomingData = await movieDBService.getList(nowPlayingList);
             const upcomingSection = new ThumbnailsList("upcoming-place", upcomingData, thumbnailHandler);
-            console.log(upcomingData)
+            
             break
         }
         case 2: {
-            //TODO by Find playing button click
+            //TODO by Find  button click
             console.log("Find button was pressed");
         }
+    }    
+}
+async function getSearchConfigData(){
+    //TODO 
+    const genreList = await movieDBService.getGenreList();
+    return {
+        "genreList": genreList,
     }
 }
