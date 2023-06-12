@@ -14,9 +14,8 @@ export default class MovieDBService {
     #getDetailUrl(id) {
         return `${this.#baseUrl}${id}?language=en-US&api_key=${this.#apiKey}`
     }
-    #getSearchUrl(searchData){
-        //TODO
-        return "Url"
+    #getSearchUrl(title) {
+        return `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=en-US&page=1&api_key=${this.#apiKey}`
     }
     async getList(listType) {
         const url = this.#getListUrl(listType);
@@ -30,27 +29,37 @@ export default class MovieDBService {
                 "vote_average": item.vote_average,
                 "genre_ids": item.genre_ids
             };
-        });           
+        });
         return res
-        
+
     }
     async getDetailData(id) {
         const url = this.#getDetailUrl(id);
         const response = await fetch(url);
-        const data = await response.json();            
+        const data = await response.json();
         return data
     }
     async getGenreList() {
         const url = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${this.#apiKey}`;
         const response = await fetch(url);
-        const data = await response.json();        
-        return data.genres;       
+        const data = await response.json();
+        return data.genres;
     }
-    async getSearchResults(searchData){
-        const url = this.#getSearchUrl;
-        // const response = await fetch(url);
-        // const data = await response.json(); 
-        // return data;
-        console.log(searchData)
+    async getSearchResults(searchData) {
+        const { title, genre } = searchData;
+        const url = this.#getSearchUrl(title);
+        const response = await fetch(url);
+        const data = await response.json(); 
+        console.log(data);
+        const res = data.results.map(item => {
+            return {
+                "id": item.id,
+                "backdrop_path": this.#uRLPrefix + item.backdrop_path,
+                "original_title": item.original_title,
+                "vote_average": item.vote_average,
+                "genre_ids": item.genre_ids
+            };
+        });        
+        return res        
     }
 }

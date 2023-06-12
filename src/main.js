@@ -83,8 +83,9 @@ async function searhHandler(index) {
             //TODO by "Find" button click
             const searchData = searchSection.getSearchData();
             const searchResultData = await movieDBService.getSearchResults(searchData);
-            //const searchResultSection = new ThumbnailsList("search-result-place", searchResultData, thumbnailHandler);
-            console.log('Find button work finished')
+            const searchResultSection = new ThumbnailsList("search-result-place", searchResultData, thumbnailHandler);
+           //console.log(searchResultData)
+            
         }
     }    
 }
